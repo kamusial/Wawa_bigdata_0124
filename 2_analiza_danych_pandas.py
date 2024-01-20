@@ -1,6 +1,8 @@
 import pandas as pd                 # czytania i analizy danych
 import matplotlib.pyplot as plt     # wykresy
 import seaborn as sns               # fajne wykresy
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 print('program start, czytam plik')
 df = pd.read_csv('otodom.csv')
@@ -53,5 +55,20 @@ print()
 print('..............')
 print('Korelacja')
 
-sns.heatmap (df.iloc[ : , 1: ].corr(), annot=True)
+sns.heatmap(df.iloc[ : , 2: ].corr(), annot=True)
 plt.show()
+
+print()
+print('..............')
+print('regresja liniowa')
+X = df1.iloc[ : , 2: ]    # dane wejściowe, bez ceny i bez id
+y = df1.cena              # dane wyjściowe
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)   # dane testowe 20%
+
+model = LinearRegression()
+model.fit(X_train, y_train)    #naucz się na danych treningowych
+print(model.score(X_test, y_test))
+print(pd.DataFrame(model.coef_, X.columns))
+
+
