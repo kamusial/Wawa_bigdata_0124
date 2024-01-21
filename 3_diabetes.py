@@ -67,13 +67,13 @@ print(model.score(X_test, y_test))   #sprawdź
 print(pd.DataFrame(confusion_matrix(y_test, model.predict(X_test))))
 
 print('\nKNN')
-model = KNeighborsClassifier()
+model = KNeighborsClassifier(n_neighbors=7)   # 7 sąsiadów
 model.fit(X_train, y_train)    #naucz się na danych treningowych
 print(model.score(X_test, y_test))   #sprawdź
 print(pd.DataFrame(confusion_matrix(y_test, model.predict(X_test))))
 
 print('\nTree')
-model = DecisionTreeClassifier()
+model = DecisionTreeClassifier(max_depth=4)  #ograniczona głębokość do 4
 model.fit(X_train, y_train)    #naucz się na danych treningowych
 print(model.score(X_test, y_test))   #sprawdź
 print(pd.DataFrame(confusion_matrix(y_test, model.predict(X_test))))
