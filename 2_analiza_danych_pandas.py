@@ -17,14 +17,12 @@ print(df.describe().T.to_string())
 # describe - przygotuj zestawienie danych
 # T - zamień wiersze z kolumnami
 # przygotuj jako string - nie obcinaj kolumn
-
 print()
 print('..............')
 print('Wykres')
 # wykres, podstawowy histogram
 # sns.histplot(data=df, x="cena")
 # plt.show()
-
 print()
 print('..............')
 print('cwiczenia')
@@ -32,7 +30,6 @@ print(df.iloc[ 3, 1 ])   # wiersz, kolumna - od 0
 print(df.iloc[ 2:4 , 3:6 ])  # wiersze od 3 do 4 i kolumny od 4 do 6
 print(df.iloc[ :2, 4: ])   # od początku, albo do końca
 print(df.iloc[ :5, :-1 ])   # 5 pierwszy wierszy, komny bez ostatniej
-
 print()
 print('..............')
 print('wybieram dane')
