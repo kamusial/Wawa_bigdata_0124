@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np     # bibliteka do obliczeń numerycznych
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
 
 df = pd.read_csv('diabetes.csv')
 print(df.head(5).to_string())
@@ -17,3 +20,14 @@ for col in ['glucose', 'bloodpressure', 'skinthickness', 'insulin',
 print(df.isna().sum())    #sprawdź
 
 df.to_csv('cukrzyca.csv', sep=';', index=False)
+
+print('regresja logistyczna')
+X = df.iloc[ : , :-1 ]    # dane wejściowe, bez ceny i bez id
+y = df.outcome              # dane wyjściowe
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)   # dane testowe 20%
+
+model = LogisticRegression()
+model.fit(X_train, y_train)    #naucz się na danych treningowych
+print(model.score(X_test, y_test))
+print(pd.DataFrame(confusion_matrix(y_test, model.predict(X_test))))
